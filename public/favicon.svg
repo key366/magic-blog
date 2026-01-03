@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 背景：深色圆角矩形 -->
+  <rect width="100" height="100" rx="20" fill="#0f0f12"/>
+  
+  <!-- 外圈：金色光环 -->
+  <circle cx="50" cy="50" r="38" stroke="#ffd700" stroke-width="4" fill="none" opacity="0.8"/>
+  
+  <!-- 核心：魔法六芒星 -->
+  <path d="M50 15 L80 70 L20 70 Z" fill="none" stroke="#ffd700" stroke-width="4"/>
+  <path d="M50 85 L80 30 L20 30 Z" fill="none" stroke="#ffd700" stroke-width="4"/>
+  
+  <!-- 中心：能量点 -->
+  <circle cx="50" cy="50" r="8" fill="#ffd700"/>
+</svg>

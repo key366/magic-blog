@@ -1,10 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    --bg-dark: #0f0f12;
+    --panel-bg: #22222b;
+    --sidebar-bg: #1a1a20;
+    --text-main: #e0e0e0;
+    --text-dim: #8b8b99;
+    --accent-gold: #ffd700;
+    --accent-purple: #b366ff;
+    --accent-blue: #4d94ff;
+    --accent-red: #ff5c5c;
+    --accent-green: #5cd65c;
+    --accent-bronze: #cd853f;
+    --border-color: #000;
+    --glow-magic: 0 0 15px rgba(179, 102, 255, 0.4);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'VT323', monospace; /* 像素风格字体 */
+  -webkit-font-smoothing: none; /* 像素字体不需要平滑 */
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  background-image: radial-gradient(circle at center, #1a1a24 0%, #0a0a0e 100%);
+  min-height: 100vh;
+  font-size: 20px; /* 像素字体通常需要大一点 */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+    border: 1px solid #333;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border: 1px solid var(--bg-dark);
+    border-radius: 0; /* 像素风不需要圆角 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-purple);
+    box-shadow: 0 0 5px var(--accent-purple);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--bg-dark);
+}
+
+/* 扫描线效果 */
+.scanlines {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%);
+    background-size: 100% 4px; pointer-events: none; z-index: 9999; opacity: 0.3;
 }
 
 code {
