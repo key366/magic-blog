@@ -1,0 +1,104 @@
+/* 记忆回廊容器 */
+.archive-container {
+    position: relative;
+    overflow: hidden; /* 防止时钟溢出 */
+}
+
+/* 魔法时钟背景容器 */
+.magic-clock-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    z-index: 0;
+    opacity: 0.1; /* 淡淡的背景效果 */
+    pointer-events: none; /* 确保不影响点击 */
+}
+
+/* 时钟主体 */
+.magic-clock {
+    width: 100%;
+    height: 100%;
+    border: 8px double #ffd700;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    
+    /* 整体倒转动画 */
+    animation: reverse-spin 20s linear infinite;
+}
+
+/* 内部虚线装饰 */
+.magic-clock::after {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px; right: 20px; bottom: 20px;
+    border: 2px dashed rgba(255, 215, 0, 0.5);
+    border-radius: 50%;
+}
+
+/* 时针 */
+.hour-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 6px;
+    height: 120px;
+    background: #ffd700;
+    margin-left: -3px;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    /* 内部相对旋转，制造错乱感 */
+    animation: spin 10s linear infinite; 
+}
+
+/* 分针 */
+.minute-hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 4px;
+    height: 180px;
+    background: #ffd700;
+    margin-left: -2px;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    animation: spin 3s linear infinite;
+}
+
+/* 中心点 */
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background: #ffd700;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #ffd700;
+}
+
+/* 动画定义 */
+@keyframes reverse-spin {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .magic-clock-container {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .hour-hand { height: 70px; }
+    .minute-hand { height: 100px; }
+}

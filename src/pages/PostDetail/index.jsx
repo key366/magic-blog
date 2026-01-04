@@ -71,14 +71,16 @@ const PostDetail = ({ user, posts, onLike, onComment }) => {
         </Button>
 
         {/* 编辑按钮 */}
-        <Button 
-          type="primary" 
-          ghost // 幽灵按钮（透明背景）
-          icon={<EditOutlined />} 
-          onClick={() => navigate(`/write?id=${post.id}`)} // 跳转到编辑页，带上 ID
-        >
-          重铸卷轴
-        </Button>
+        {user && (
+          <Button 
+            type="primary" 
+            ghost // 幽灵按钮（透明背景）
+            icon={<EditOutlined />} 
+            onClick={() => navigate(`/write?id=${post.id}`)} // 跳转到编辑页，带上 ID
+          >
+            重铸卷轴
+          </Button>
+        )}
       </div>
 
       <Card>

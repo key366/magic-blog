@@ -3,6 +3,7 @@ import { Timeline, Card, Empty, Typography, Tag } from 'antd';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import moment from 'moment'; // 引入 moment 方便处理日期
+import './index.css'; // 引入样式文件
 
 const { Title } = Typography;
 
@@ -36,9 +37,18 @@ const Archive = ({ posts }) => {
   });
 
   return (
-    <div className="archive-container" style={{ maxWidth: 800, margin: '0 auto' }}>
-      <Card bordered={false}>
-        <Title level={2} style={{ marginBottom: 40, textAlign: 'center' }}>
+    <div className="archive-container" style={{ maxWidth: 800, margin: '0 auto', position: 'relative', minHeight: '80vh' }}>
+      {/* 魔法时钟背景 */}
+      <div className="magic-clock-container">
+        <div className="magic-clock">
+          <div className="clock-hand hour-hand"></div>
+          <div className="clock-hand minute-hand"></div>
+          <div className="clock-center"></div>
+        </div>
+      </div>
+
+      <Card bordered={false} style={{ background: 'transparent', position: 'relative', zIndex: 1 }}>
+        <Title level={2} style={{ marginBottom: 40, textAlign: 'center', textShadow: '0 0 10px #ffd700' }}>
           记忆回廊
         </Title>
         

@@ -50,6 +50,55 @@ body {
     box-shadow: 0 0 5px var(--accent-purple);
 }
 
+/* Magic Input Styles */
+.magic-input {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: 2px solid var(--accent-gold) !important;
+    color: var(--accent-gold) !important;
+    font-family: 'VT323', monospace !important;
+    font-size: 1.2rem !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.magic-input::placeholder {
+    color: rgba(255, 215, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.magic-input:focus, .magic-input:hover {
+    box-shadow: 0 0 15px var(--accent-gold), inset 0 0 10px rgba(255, 215, 0, 0.2) !important;
+    border-color: #fff !important;
+}
+
+.magic-input:focus::placeholder {
+    color: #fff;
+    text-shadow: 0 0 8px var(--accent-gold);
+    opacity: 1;
+}
+
+/* Ant Design Overrides for Magic Input */
+.ant-input-affix-wrapper.magic-input {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: 2px solid var(--accent-gold) !important;
+}
+
+.ant-input-affix-wrapper.magic-input input {
+    background-color: transparent !important;
+    color: var(--accent-gold) !important;
+    font-family: 'VT323', monospace !important;
+}
+
+.ant-input-affix-wrapper.magic-input:focus-within {
+    box-shadow: 0 0 15px var(--accent-gold), inset 0 0 10px rgba(255, 215, 0, 0.2) !important;
+    border-color: #fff !important;
+}
+
+.ant-input-affix-wrapper.magic-input:focus-within input::placeholder {
+    color: #fff;
+    text-shadow: 0 0 8px var(--accent-gold);
+}
+
 ::-webkit-scrollbar-corner {
     background: var(--bg-dark);
 }

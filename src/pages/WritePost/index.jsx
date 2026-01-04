@@ -83,7 +83,7 @@ const WritePost = ({ user, posts, onAddPost, onUpdatePost }) => {
             name="title"
             rules={[{ required: true, message: '请输入卷轴标题！' }]}
           >
-            <Input placeholder="请输入引人注目的标题" size="large" />
+            <Input placeholder="请输入引人注目的标题" size="large" className="magic-input" />
           </Form.Item>
 
           {/* 封面图片字段 */}
@@ -92,7 +92,7 @@ const WritePost = ({ user, posts, onAddPost, onUpdatePost }) => {
             name="cover"
             rules={[{ type: 'url', message: '请输入有效的 URL！' }]}
           >
-            <Input placeholder="https://example.com/image.jpg" />
+            <Input placeholder="https://example.com/image.jpg" className="magic-input" />
           </Form.Item>
 
           {/* 标签字段 (多选) */}
@@ -124,6 +124,7 @@ const WritePost = ({ user, posts, onAddPost, onUpdatePost }) => {
               placeholder="在此刻录 Markdown 符文..." 
               showCount 
               maxLength={10000}
+              className="magic-input"
             />
           </Form.Item>
 

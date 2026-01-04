@@ -192,10 +192,10 @@ function App() {
               />
             }>
               {/* 3. 把 posts 传给 Home */}
-              <Route index element={<Home posts={posts} onDelete={handleDelete} />} />
+              <Route index element={<Home user={user} posts={posts} onDelete={handleDelete} />} />
               
               <Route path="archive" element={<Archive posts={posts} />} />
-              <Route path="about" element={<About />} />
+              <Route path="about" element={<About user={user} />} />
               <Route 
                 path="post/:id" 
                 element={

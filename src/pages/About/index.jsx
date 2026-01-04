@@ -4,7 +4,7 @@ import { GithubOutlined, MailOutlined, EnvironmentOutlined, GlobalOutlined, Edit
 
 const { Title, Paragraph } = Typography;
 
-const About = () => {
+const About = ({ user }) => {
   // 1. 定义个人信息状态
   const [userInfo, setUserInfo] = useState({
     name: '见习法师',
@@ -58,15 +58,17 @@ const About = () => {
       
       {/* 顶部卡片 */}
       <Card bordered={false} style={{ textAlign: 'center', marginBottom: 24 }}>
-        {/* 编辑按钮：绝对定位在右上角 */}
-        <Button 
-          type="primary" 
-          shape="circle" 
-          icon={<EditOutlined />} 
-          size="large"
-          style={{ position: 'absolute', right: 24, top: 24 }}
-          onClick={showModal}
-        />
+        {/* 编辑按钮：绝对定位在右上角，仅登录可见 */}
+        {user && (
+          <Button 
+            type="primary" 
+            shape="circle" 
+            icon={<EditOutlined />} 
+            size="large"
+            style={{ position: 'absolute', right: 24, top: 24 }}
+            onClick={showModal}
+          />
+        )}
 
         <Avatar 
           size={100} 
