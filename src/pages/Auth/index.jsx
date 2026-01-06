@@ -1,30 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Tabs, Form, Input, Button, message } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
 
 const Auth = ({ onLogin }) => {
+  const [activeTab, setActiveTab] = useState('login');
+
   // 登录表单提交
   const handleLoginSubmit = (values) => {
-    console.log('Login Success:', values);
-    // 模拟登录验证
+    console.log('Login attempt:', values);
+    
+    // 1. 优先检查内置管理员账号
     if (values.username === 'admin' && values.password === '123456') {
-      // 调用父组件传下来的 onLogin 函数，把用户信息传回去
       onLogin({
         username: values.username,
         role: 'admin',
         avatar: 'https://api.dicebear.com/7.x/miniavs/svg?seed=1' // 随机头像
       });
+      return;
+    } 
+    
+    // 2. 检查注册用户列表 (从 LocalStorage 获取)
+    const storedUsers = JSON.parse(localStorage.getItem('my_blog_registered_users') || '[]');
+    const foundUser = storedUsers.find(
+      u => u.username === values.username && u.password === values.password
+    );
+
+    if (foundUser) {
+      onLogin({
+        username: foundUser.username,
+        role: foundUser.role || 'visitor',
+        avatar: foundUser.avatar
+      });
     } else {
-      message.error('用户名或密码错误！(试用: admin / 123456)');
+      message.error('用户名或密码错误！(试用管理员: admin / 123456)');
     }
   };
 
   // 注册表单提交
   const handleRegisterSubmit = (values) => {
-    console.log('Register Success:', values);
+    // 1. 获取现有用户列表
+    const storedUsers = JSON.parse(localStorage.getItem('my_blog_registered_users') || '[]');
+    
+    // 2. 检查用户是否已存在
+    const userExists = storedUsers.some(u => u.username === values.username);
+    if (userExists) {
+      message.error('该魔法师名号已被注册！');
+      return;
+    }
+
+    // 3. 创建新用户
+    const newUser = {
+      username: values.username,
+      password: values.password, // 注意：实际生产环境中密码必须加密存储！这里仅为演示。
+      email: values.email,
+      role: 'visitor',
+      avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=${values.username}` // 根据用户名生成头像
+    };
+
+    // 4. 保存到 LocalStorage
+    storedUsers.push(newUser);
+    localStorage.setItem('my_blog_registered_users', JSON.stringify(storedUsers));
+
     message.success('注册成功！请登录');
-    // 这里通常会调用注册接口，成功后自动切换到登录 Tab
-    // 为了演示简单，我们暂不处理自动切换
+    setActiveTab('login'); // 自动切换回登录页
   };
 
   // 定义 Tab 的内容
@@ -124,7 +162,8 @@ const Auth = ({ onLogin }) => {
         </div>
         
         <Tabs 
-          defaultActiveKey="login" 
+          activeKey={activeTab} // 受控模式
+          onChange={setActiveTab} // 切换 Tab 时更新状态
           items={items} 
           centered 
         />

@@ -16,8 +16,19 @@ const WritePost = ({ user, posts, onAddPost, onUpdatePost }) => {
   // 判断是否为编辑模式
   const isEditMode = !!postId;
 
+  // 权限检查：如果不是管理员，禁止访问
+  useEffect(() => {
+    if (!user || user.role !== 'admin') {
+      message.error('你的魔力不足以刻录卷轴！(仅限大法师)');
+      navigate('/');
+    }
+  }, [user, navigate]);
+
   // 初始化：如果是编辑模式，回显数据
   useEffect(() => {
+    // 如果没有权限，直接返回，不再执行后续逻辑
+    if (!user || user.role !== 'admin') return;
+
     if (isEditMode && posts) {
       const postToEdit = posts.find(p => p.id === postId);
       if (postToEdit) {

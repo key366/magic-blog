@@ -24,10 +24,11 @@ const Header = ({ user, onLogout, primaryColor, onColorChange }) => {
       key: '/about',
       label: <Link to="/about" onClick={() => setDrawerVisible(false)}>法师塔</Link>,
     },
-    {
+    // 仅管理员可见“刻录卷轴”
+    ...(user?.role === 'admin' ? [{
       key: '/write',
       label: <Link to="/write" onClick={() => setDrawerVisible(false)}>刻录卷轴</Link>,
-    },
+    }] : []),
   ];
 
   // 移动端抽屉菜单内容

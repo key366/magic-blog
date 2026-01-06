@@ -70,8 +70,8 @@ const PostDetail = ({ user, posts, onLike, onComment }) => {
           返回
         </Button>
 
-        {/* 编辑按钮 */}
-        {user && (
+        {/* 编辑按钮：仅管理员可见 */}
+        {user?.role === 'admin' && (
           <Button 
             type="primary" 
             ghost // 幽灵按钮（透明背景）

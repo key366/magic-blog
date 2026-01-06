@@ -51,7 +51,8 @@ const Home = ({ user, posts, onDelete }) => {
               actions={[
                 <IconText icon={UserOutlined} text={item.author} key="list-vertical-star-o" />,
                 <IconText icon={ClockCircleOutlined} text={item.createdAt} key="list-vertical-like-o" />,
-                user && <button style={{ border: 'none', background: 'none', color: '#ff5c5c', cursor: 'pointer', fontFamily: 'inherit' }} onClick={() => onDelete(item.id)}>销毁卷轴</button>
+                // 仅管理员可见删除按钮 (销毁卷轴)
+                user?.role === 'admin' && <button style={{ border: 'none', background: 'none', color: '#ff5c5c', cursor: 'pointer', fontFamily: 'inherit' }} onClick={() => onDelete(item.id)}>销毁卷轴</button>
               ]}
               extra={
                 // 如果有封面图才显示

@@ -58,8 +58,8 @@ const About = ({ user }) => {
       
       {/* 顶部卡片 */}
       <Card bordered={false} style={{ textAlign: 'center', marginBottom: 24 }}>
-        {/* 编辑按钮：绝对定位在右上角，仅登录可见 */}
-        {user && (
+        {/* 编辑按钮：绝对定位在右上角，仅管理员可见 */}
+        {user?.role === 'admin' && (
           <Button 
             type="primary" 
             shape="circle" 
