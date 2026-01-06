@@ -47,7 +47,7 @@ const WritePost = ({ user, posts, onAddPost, onUpdatePost }) => {
       // 如果是新建模式，重置表单
       form.resetFields();
     }
-  }, [isEditMode, postId, posts, form, navigate]);
+  }, [isEditMode, postId, posts, form, navigate, user]);
 
   // 表单提交处理
   const onFinish = (values) => {
